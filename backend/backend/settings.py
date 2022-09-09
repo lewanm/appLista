@@ -84,7 +84,7 @@ DATABASES = {
         'PASSWORD': 'root',
         'NAME': 'lista_api',
         'OPTIONS': {
-            'init_command': "SQL sql_mode='STRICT_TRANS_TABLES'"
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
         }
 
     }

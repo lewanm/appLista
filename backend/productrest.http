@@ -1,0 +1,26 @@
+###ver listas
+GET http://127.0.0.1:8000/api/lists/
+
+###agregar listas
+POST http://127.0.0.1:8000/api/lists/
+content-type: application/json
+
+{
+    "name": "lista a modificar",
+    "description": "aaaaaaaaa"
+}
+
+###ver una lista
+GET http://127.0.0.1:8000/api/lists/6
+
+###modificar lista
+PUT http://127.0.0.1:8000/api/lists/7
+content-type: application/json
+
+{
+    "name": "Otra lista de prueba",
+    "description": "modifique la descripcion con el PUT"
+}
+
+###eliminar lista
+DELETE http://127.0.0.1:8000/api/lists/5
