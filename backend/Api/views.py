@@ -11,10 +11,6 @@ import json
 
 class ListsView(View):
 
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
     def get(self, request, id=0):
         # lists = List.objects.all()
         if id > 0:
@@ -91,33 +87,33 @@ class ProductView(View):
     def get(self, request, id=0):
         # lists = List.objects.all()
         if id > 0:
-            lists = list(List.objects.filter(id=id).values())
-            if len(lists) > 0:
-                theList = lists[0]
+            products = list(Product.objects.filter(id=id).values())
+            if len(products) > 0:
+                product = products[0]
                 datos = {
                     'message': 'Success',
-                    'list': theList
+                    'list': product
                 }
             else:
                 datos = {
-                    'message': 'Lists not found.'
+                    'message': 'Product not found.'
                 }
         else:
-            lists = list(List.objects.values())
-            if len(lists) > 0:
+            products = list(Product.objects.values())
+            if len(products) > 0:
                 datos = {
                     'message': 'Success',
-                    'lists': lists
+                    'products': products
                 }
             else:
                 datos = {
-                    'message': 'Lists not found.'
+                    'message': 'Product not found.'
                 }
         return JsonResponse(datos)
 
     def post(self, request):
         jd = json.loads(request.body)
-        List.objects.create(name=jd['name'], description=jd['description'])
+        Product.objects.create(name=jd['name'], category=jd['category'])
         datos = {
             'message': 'Success',
         }
@@ -126,30 +122,34 @@ class ProductView(View):
 
     def put(self, request, id):
         jd = json.loads(request.body)
-        lists = list(List.objects.filter(id=id).values())
-        if len(lists) > 0:
-            theList = List.objects.get(id=id)
-            theList.name = jd['name']
-            theList.description = jd['description']
-            theList.save()
+        products = list(Product.objects.filter(id=id).values())
+        if len(products) > 0:
+            product = Product.objects.get(id=id)
+            product.name = jd['name']
+            product.category = jd['category']
+            product.save()
             datos = {
                 'message': 'Success',
             }
         else:
             datos = {
-                'message': 'Lists not found.'
+                'message': 'Product not found.'
             }
         return JsonResponse(datos)
 
     def delete(self, request, id):
-        lists = list(List.objects.filter(id=id).values())
-        if len(lists) > 0:
-            List.objects.filter(id=id).delete()
+        products = list(Product.objects.filter(id=id).values())
+        if len(products) > 0:
+            Product.objects.filter(id=id).delete()
             datos = {
                 'message': 'Success',
             }
         else:
             datos = {
-                'message': 'Lists not found.'
+                'message': 'Products not found.'
             }
         return JsonResponse(datos)
+
+    def getCategories(self, request):
+        categories = list(Product.objects.all())
+        print(categories)

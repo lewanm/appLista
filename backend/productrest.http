@@ -1,26 +1,29 @@
 ###ver listas
-GET http://127.0.0.1:8000/api/lists/
+GET http://127.0.0.1:8000/api/products/
 
 ###agregar listas
-POST http://127.0.0.1:8000/api/lists/
+POST http://127.0.0.1:8000/api/products/
 content-type: application/json
 
 {
-    "name": "lista a modificar",
-    "description": "aaaaaaaaa"
+    "name": "uvita",
+    "category": "alcohol"
 }
 
 ###ver una lista
-GET http://127.0.0.1:8000/api/lists/6
+GET http://127.0.0.1:8000/api/products/7
 
 ###modificar lista
-PUT http://127.0.0.1:8000/api/lists/7
+PUT http://127.0.0.1:8000/api/products/6
 content-type: application/json
 
 {
-    "name": "Otra lista de prueba",
-    "description": "modifique la descripcion con el PUT"
+    "name": "uvita blanco",
+    "category": "alcohol"
 }
 
 ###eliminar lista
-DELETE http://127.0.0.1:8000/api/lists/5
+DELETE http://127.0.0.1:8000/api/products/4
+
+###listar catergorias
+GET http://127.0.0.1:8000/api/products/categories
