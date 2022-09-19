@@ -75,21 +75,23 @@ class ListsView(View):
             datos = {
                 'message': 'Lists not found.'
             }
+
         return JsonResponse(datos)
 
     def getOrderedList(self, request):
         lists = list(List.objects.values_list('name'))
+
         if len(lists) > 0:
             datos = {
+                'lists': lists,
                 'message': 'Success',
-                'lists': lists
             }
         else:
+
             datos = {
                 'message': 'Lists not found.'
             }
-
-        return JsonResponse(datos)
+            return JsonResponse(datos)
 
 
 class ProductView(View):
@@ -97,35 +99,38 @@ class ProductView(View):
     def get(self, request):
 
         A = {
+            "categoryId": 1,
+
             "categoryName": "alcohol",
             "items": [{"productId": 1,
                        "productName": "vino blanco",
                        "categoria": "alcohol",
-                       "icon": "🧉",
+                       "icon": "🍸",
                        },
                       {"productId": 3,
                        "productName": "vino tinto",
                        "categoria": "alcohol",
-                       "icon": "🥤",
+                       "icon": "🍷",
                        },
                       {"productId": 5,
                        "productName": "fernec",
                        "categoria": "alcohol",
-                       "icon": "🧉",
+                       "icon": "🥤",
                        },
                       {"productId": 7,
                        "productName": "tia maruca",
                        "categoria": "alcohol",
-                       "icon": "🥤",
+                       "icon": "🍶",
                        },
                       {"productId": 8,
                        "productName": "speed",
                        "categoria": "alcohol",
-                       "icon": "🧉",
+                       "icon": "🥃",
                        },
                       ]
         }
         B = {
+            "categoryId": 2,
             "categoryName": "carniceria",
             "items": [{"productId": 4,
                        "productName": "chancho",
@@ -139,22 +144,32 @@ class ProductView(View):
                        },
                       ]
         }
+        final = {"categories": [A, B]}
 
-        final = {"pl": [A, B]}
+        products = [{
+            "id": 1,
 
-        categories = list(Product.objects.values_list(
-            'category').order_by('category').distinct())
+            "name": "papa",
+                    "category_id": 2
+        },
+            {
+            "id": 2,
+            "name": "manzana",
+            "category_id": 2
+        }]
+        categories_values = list(Category.objects.values())
+        categories = list(Category.objects.all())
 
-        products = list(Product.objects.values())
-
-        print(categories)
+        for (category, category_v) in zip(categories, categories_values):
+            category_v["products"] = list(category.products.values())
 
         datos = {
+
             'message': 'Success',
-            'items': products
+            'categories': categories_values
 
         }
-        return JsonResponse(final)
+        return JsonResponse(datos)
 
     def post(self, request):
         jd = json.loads(request.body)
@@ -194,7 +209,3 @@ class ProductView(View):
                 'message': 'Products not found.'
             }
         return JsonResponse(datos)
-
-    def getCategories(self, request):
-        categories = list(Product.objects.all())
-        print(categories)
