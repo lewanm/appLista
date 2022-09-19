@@ -11,7 +11,7 @@ const listas = async () => {
 
 function App() {
   //esto es lo que lo va a mostrar en la pagina
-  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   //modificar por AXIOS con promesas y el nombre de la funcion
   //CAMBIAR NOMBRE A FUNCION, YA QUE NO TIENE SENTIDO
@@ -19,7 +19,7 @@ function App() {
     try {
       const res = await listas();
       const data = await res.json();
-      setProducts(data.pl);
+      setCategories(data.categories);
     } catch (error) {
       console.log(error);
     }
@@ -28,18 +28,15 @@ function App() {
   useEffect(() => {
     listingLists();
   }, []);
-  //          cambiar los nombres
-  // Product -> Category
-  // quedaria {category.name}
-  // item -> product
+
   return (
     <>
-      {products.map((product) => (
-        <section>
-          <span className="tittle2">{product.categoryName}</span>
+      {categories.map((category) => (
+        <section key={category.id}>
+          <span className="tittle2">{category.name}</span>
           <article className="container2">
-            {product.items.map((item) => (
-              <SetProduct key={item.productId} product={item} />
+          {category.products.map((item) => (
+              <SetProduct key={item.id} product={item} />
             ))}
           </article>
         </section>
@@ -49,3 +46,6 @@ function App() {
 }
 
 export default App;
+/*
+
+*/
