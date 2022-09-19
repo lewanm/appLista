@@ -57,3 +57,28 @@
 .btn-add:hover {
   background-color: lightgray;
 }
+
+/* ACA VA EL SIGUIENTE COMPONENTE */
+
+.tittle2 {
+  margin-left: 5px;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.container2 {
+  width: 360px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+}
+
+.item2 {
+  background-color: lightcyan;
+  font-size: 40px;
+  width: 64px;
+  height: 64px;
+}

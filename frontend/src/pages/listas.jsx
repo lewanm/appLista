@@ -10,8 +10,7 @@ const listas = async () => {
 };
 
 //que nombre le pongo a esto?
-export default function Lists(props) {
-  //esto es lo que lo va a mostrar en la pagina
+export default function Lists() {
   const [lists, setLists] = useState([]);
 
   const listingLists = async () => {

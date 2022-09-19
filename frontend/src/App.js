@@ -1,45 +1,49 @@
 import "./App.css";
+import { BrowserRouter, Route, Switch } from "react-dom";
 import { useEffect, useState } from "react";
-import SetList from "./components/lista";
+import SetProduct from "./components/products";
 
-const apiURL = "http://127.0.0.1:8000/api/lists/";
-//ver que nombre le pongo
+const apiURL = "http://127.0.0.1:8000/api/products/";
+
 const listas = async () => {
   return await fetch(apiURL);
 };
 
 function App() {
   //esto es lo que lo va a mostrar en la pagina
-  const [lists, setLists] = useState([]);
+  const [products, setProducts] = useState([]);
 
   //modificar por AXIOS con promesas y el nombre de la funcion
+  //CAMBIAR NOMBRE A FUNCION, YA QUE NO TIENE SENTIDO
   const listingLists = async () => {
     try {
       const res = await listas();
       const data = await res.json();
-      setLists(data.lists);
+      setProducts(data.pl);
     } catch (error) {
       console.log(error);
     }
-
-    /*     listas().then((res)=>{
-
-    }).catch((error)=>{
-
-    }) */
   };
 
   useEffect(() => {
     listingLists();
   }, []);
-
+  //          cambiar los nombres
+  // Product -> Category
+  // quedaria {category.name}
+  // item -> product
   return (
     <>
-      <h2>Mis listas</h2>
-      {lists.map((list) => (
-        <SetList key={list.id} list={list} />
+      {products.map((product) => (
+        <section>
+          <span className="tittle2">{product.categoryName}</span>
+          <article className="container2">
+            {product.items.map((item) => (
+              <SetProduct key={item.productId} product={item} />
+            ))}
+          </article>
+        </section>
       ))}
-      <span className="btn-add">➕</span>
     </>
   );
 }
