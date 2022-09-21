@@ -1,6 +1,9 @@
 ###ver listas
 GET http://127.0.0.1:8000/api/lists/
 
+###ver una lista
+GET http://127.0.0.1:8000/api/lists/1
+
 ###agregar listas
 POST http://127.0.0.1:8000/api/lists/
 content-type: application/json
@@ -9,9 +12,6 @@ content-type: application/json
     "name": "lista a modificar",
     "description": "aaaaaaaaa"
 }
-
-###ver una lista
-GET http://127.0.0.1:8000/api/lists/6
 
 ###modificar lista
 PUT http://127.0.0.1:8000/api/lists/7
@@ -25,5 +25,5 @@ content-type: application/json
 ###eliminar lista
 DELETE http://127.0.0.1:8000/api/lists/5
 
-###PRUEBA
-GET http://127.0.0.1:8000/api/lists2/
+###TEST
+GET http://127.0.0.1:8000/api/test/

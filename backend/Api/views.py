@@ -16,10 +16,67 @@ class ListsView(View):
         if id > 0:
             lists = list(List.objects.filter(id=id).values())
             if len(lists) > 0:
+                # MODIFICAR ACA PARA HACER LA PARTE QUE MUESTA LO DE UNA LISTA!
                 theList = lists[0]
+                # ESTO ES COMO TENDRIA QUE QUEDAR PARA PODER ARMAR LA PAGINA
                 datos = {
                     'message': 'Success',
-                    'list': theList
+                    "list": [
+                        {
+                            "id": 1,
+                            "name": "compras del mes",
+                            "description": "AAA",
+                            "categories": [
+                                {
+                                    "id": 1,
+                                    "name": "carniceria",
+                                    "products": []
+                                },
+                                {
+                                    "id": 2,
+                                    "name": "verduleria",
+                                    "products": [
+                                        {
+                                            "id": 1,
+                                            "name": "papa",
+                                            "category_id": 2,
+                                            "icon": "\ud83e\udd54\u200b"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "name": "manzana",
+                                            "category_id": 2,
+                                            "icon": "\ud83c\udf4e\u200b"
+                                        },
+                                        {
+                                            "id": 4,
+                                            "name": "banana",
+                                            "category_id": 2,
+                                            "icon": "\ud83c\udf4c"
+                                        },
+                                        {
+                                            "id": 6,
+                                            "name": "cebolla",
+                                            "category_id": 2,
+                                            "icon": "\ud83e\uddc5\u200b"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": 3,
+                                    "name": "limpieza",
+                                    "products": [
+                                        {
+                                            "id": 3,
+                                            "name": "blem",
+                                            "category_id": 3,
+                                            "icon": "\ud83e\uddef\u200b"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
                 }
             else:
                 datos = {

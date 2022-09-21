@@ -1,9 +1,9 @@
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-dom";
 import { useEffect, useState } from "react";
-import SetCategory from "./components/category";
+import GetList from "./components/revisar/getList";
 
-const apiURL = "http://127.0.0.1:8000/api/products/";
+const apiURL = "http://127.0.0.1:8000/api/lists/1";
 
 const listas = async () => {
   return await fetch(apiURL);
@@ -11,7 +11,7 @@ const listas = async () => {
 
 function App() {
   //esto es lo que lo va a mostrar en la pagina
-  const [categories, setCategories] = useState([]);
+  const [lists, setLists] = useState([]);
 
   //modificar por AXIOS con promesas y el nombre de la funcion
   //CAMBIAR NOMBRE A FUNCION, YA QUE NO TIENE SENTIDO
@@ -19,7 +19,7 @@ function App() {
     try {
       const res = await listas();
       const data = await res.json();
-      setCategories(data.categories);
+      setLists(data.list);
     } catch (error) {
       console.log(error);
     }
@@ -31,7 +31,9 @@ function App() {
   //
   return (
     <>
-      A 
+      {lists.map((list) => (
+        <GetList key={list.id} list={list} />
+      ))}
     </>
   );
 }
