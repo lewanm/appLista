@@ -98,65 +98,6 @@ class ProductView(View):
 
     def get(self, request):
 
-        A = {
-            "categoryId": 1,
-
-            "categoryName": "alcohol",
-            "items": [{"productId": 1,
-                       "productName": "vino blanco",
-                       "categoria": "alcohol",
-                       "icon": "🍸",
-                       },
-                      {"productId": 3,
-                       "productName": "vino tinto",
-                       "categoria": "alcohol",
-                       "icon": "🍷",
-                       },
-                      {"productId": 5,
-                       "productName": "fernec",
-                       "categoria": "alcohol",
-                       "icon": "🥤",
-                       },
-                      {"productId": 7,
-                       "productName": "tia maruca",
-                       "categoria": "alcohol",
-                       "icon": "🍶",
-                       },
-                      {"productId": 8,
-                       "productName": "speed",
-                       "categoria": "alcohol",
-                       "icon": "🥃",
-                       },
-                      ]
-        }
-        B = {
-            "categoryId": 2,
-            "categoryName": "carniceria",
-            "items": [{"productId": 4,
-                       "productName": "chancho",
-                       "categoria": "carniceria",
-                       "icon": "🥓",
-                       },
-                      {"productId": 6,
-                       "productName": "bife",
-                       "categoria": "carniceria",
-                       "icon": "🍔",
-                       },
-                      ]
-        }
-        final = {"categories": [A, B]}
-
-        products = [{
-            "id": 1,
-
-            "name": "papa",
-                    "category_id": 2
-        },
-            {
-            "id": 2,
-            "name": "manzana",
-            "category_id": 2
-        }]
         categories_values = list(Category.objects.values())
         categories = list(Category.objects.all())
 

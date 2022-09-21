@@ -23,6 +23,11 @@ class Product(models.Model):
                                  blank=True,
                                  on_delete=models.SET_NULL,
                                  related_name='products')
+    icon = models.CharField(
+        max_length=50,
+        null=True,
+        default='😈',
+        blank=True)
 
     def __str__(self):
         return self.name

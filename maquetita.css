@@ -1,6 +1,7 @@
 * {
   margin: 0px;
   padding: 0px;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .tittle {
@@ -15,12 +16,21 @@
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
 }
 
 .item {
+  width: 50px;
+  height: 50px;
+}
+
+.chuchiten {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   background-color: lightcyan;
-  width: 64px;
-  height: 64px;
+  text-align: center;
+  border: 1px solid black;
 }
